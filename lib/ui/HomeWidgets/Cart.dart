@@ -1,10 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:store/colors/AppColors.dart';
 import 'package:store/fonts/Roboto.dart';
 import 'package:store/ui/HomeWidgets/cartWidgets/Address.dart';
 import 'package:store/ui/HomeWidgets/cartWidgets/MyCart.dart';
 import 'package:store/ui/HomeWidgets/cartWidgets/Payment.dart';
-
 
 class Cart extends StatefulWidget {
   final Function function;
@@ -29,8 +30,6 @@ class _CartState extends State<Cart> {
       total = value;
     });
   }
-
-
 
   void getShopStep(int step) {
     setState(() {
@@ -77,40 +76,99 @@ class _CartState extends State<Cart> {
         key: _paymentKey,
       ),
     ];
-
+    log(shopStep);
     return Container(
-      color: AppColors.third,
-      child: ListView(
-        controller: lvController,
-        padding: EdgeInsets.only(top: 10, bottom: 10),
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(left: 20, right: 20),
-            child: Row(
-              children: <Widget>[
-                Column(
-                  children: <Widget>[
-                    Text(
-                      'My Cart',
-                      style: TextStyle(
-                        fontSize: 10,
-                        color: (shopStep >= 0) ? Colors.black : Colors.grey,
-                        fontFamily: (shopStep >= 0)
-                            ? Roboto.bold
-                            : Roboto.regular,
+        color: AppColors.third,
+        child: ListView(
+          controller: lvController,
+          padding: EdgeInsets.only(top: 10, bottom: 10),
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(left: 20, right: 20),
+              child: Row(
+                children: <Widget>[
+                  Column(
+                    children: <Widget>[
+                      Text(
+                        'הזמנות',
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: (shopStep >= 0) ? Colors.black : Colors.grey,
+                          fontFamily:
+                              (shopStep >= 0) ? Roboto.bold : Roboto.regular,
+                        ),
                       ),
-                    ),
-                    InkWell(
-                      onTap: (shopStep == 0)
-                          ? null
-                          : () {
-                        setState(() {
-                          shopStep = 0;
-                        });
-                      },
-                      child: Container(
+                      InkWell(
+                        onTap: (shopStep != 0)
+                            ? () {
+                                setState(() {
+                                  shopStep = 0;
+                                });
+                              }
+                            : null,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: (shopStep == 0)
+                                ? AppColors.first
+                                : Colors.grey.withOpacity(0.5),
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
+                          margin: EdgeInsets.only(top: 5, bottom: 10),
+                          width: 100,
+                          height: 7,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Spacer(),
+                  Column(
+                    children: <Widget>[
+                      Text(
+                        'הצעות מחיר',
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: (shopStep >= 1) ? Colors.black : Colors.grey,
+                          fontFamily:
+                              (shopStep >= 1) ? Roboto.bold : Roboto.regular,
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (shopStep != 1)
+                            ? () {
+                                setState(() {
+                                  shopStep = 1;
+                                });
+                              }
+                            : null,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: (shopStep >= 1)
+                                ? AppColors.first
+                                : Colors.grey.withOpacity(0.5),
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
+                          margin: EdgeInsets.only(top: 5, bottom: 10),
+                          width: 100,
+                          height: 7,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Spacer(), /* 
+                  Column(
+                    children: <Widget>[
+                      Text(
+                        'Payment',
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: (shopStep == 2) ? Colors.black : Colors.grey,
+                          fontFamily:
+                              (shopStep == 2) ? Roboto.bold : Roboto.regular,
+                        ),
+                      ),
+                      Container(
                         decoration: BoxDecoration(
-                          color: (shopStep >= 0)
+                          color: (shopStep == 2)
                               ? AppColors.first
                               : Colors.grey.withOpacity(0.5),
                           borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -119,76 +177,13 @@ class _CartState extends State<Cart> {
                         width: 100,
                         height: 7,
                       ),
-                    ),
-                  ],
-                ),
-                Spacer(),
-                Column(
-                  children: <Widget>[
-                    Text(
-                      'Address',
-                      style: TextStyle(
-                        fontSize: 10,
-                        color: (shopStep >= 1) ? Colors.black : Colors.grey,
-                        fontFamily: (shopStep >= 1)
-                            ? Roboto.bold
-                            : Roboto.regular,
-                      ),
-                    ),
-                    InkWell(
-                      onTap: (shopStep <= 1)
-                          ? null
-                          : () {
-                        setState(() {
-                          shopStep = 1;
-                        });
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: (shopStep >= 1)
-                              ? AppColors.first
-                              : Colors.grey.withOpacity(0.5),
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                        ),
-                        margin: EdgeInsets.only(top: 5, bottom: 10),
-                        width: 100,
-                        height: 7,
-                      ),
-                    ),
-                  ],
-                ),
-                Spacer(),
-                Column(
-                  children: <Widget>[
-                    Text(
-                      'Payment',
-                      style: TextStyle(
-                        fontSize: 10,
-                        color: (shopStep == 2) ? Colors.black : Colors.grey,
-                        fontFamily: (shopStep == 2)
-                            ? Roboto.bold
-                            : Roboto.regular,
-                      ),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: (shopStep == 2)
-                            ? AppColors.first
-                            : Colors.grey.withOpacity(0.5),
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                      ),
-                      margin: EdgeInsets.only(top: 5, bottom: 10),
-                      width: 100,
-                      height: 7,
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ), */
+                ],
+              ),
             ),
-          ),
-          cartPages[shopStep]
-        ],
-      )
-    );
+            cartPages[shopStep]
+          ],
+        ));
   }
 }

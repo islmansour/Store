@@ -5,10 +5,11 @@ import 'package:store/Styles/BoxStyle.dart';
 import 'package:store/colors/AppColors.dart';
 import 'package:store/fonts/Roboto.dart';
 import 'package:store/models/Article.dart';
+import 'package:store/ui/HomeWidgets/LatestUpdatesStore.dart';
 import 'package:store/ui/ProductsReader.dart';
-
 import '../../Data.dart';
 import '../ProductDetails.dart';
+import 'package:floating_action_bubble/floating_action_bubble.dart';
 
 class HomePage extends StatefulWidget {
   final Function function;
@@ -60,9 +61,16 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
+          LatestUpdatesCard(),
+
+          /*      Container(
+              decoration: BoxStyle.withShadow,
+              margin: EdgeInsets.only(left: 20, right: 20, top: 20),
+              child: GestureDetector(child: LatestUpdatesCard())), */
+
           // END OF SEARCH
-          // START OF SMALL CATEGORIES
-          Container(
+          //  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< START OF SMALL CATEGORIES >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+          /*  Container(
               margin: EdgeInsets.only(top: 20),
               height: 80,
               alignment: Alignment.center,
@@ -124,7 +132,9 @@ class _HomePageState extends State<HomePage> {
                   );
                 },
                 itemCount: Data.categories.length,
-              )),
+              )), */
+          //  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< START OF SALE ITEMS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+/* 
           Container(
             margin: EdgeInsets.only(
               bottom: 5,
@@ -203,8 +213,10 @@ class _HomePageState extends State<HomePage> {
                 itemCount: 3,
               ),
             ),
-          ),
-          Container(
+          ), */
+          //  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< START OF POPULARE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+          /* Container(
             margin: EdgeInsets.only(
               bottom: 5,
               top: 25,
@@ -282,7 +294,9 @@ class _HomePageState extends State<HomePage> {
               },
               itemCount: Data.top.length,
             ),
-          ),
+          ), */
+          //  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< START OF RECENT ITEMS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+/* 
           Container(
             margin: EdgeInsets.only(
               bottom: 5,
@@ -457,7 +471,7 @@ class _HomePageState extends State<HomePage> {
               itemCount: 3,
               physics: NeverScrollableScrollPhysics(),
             ),
-          )
+          ) */
         ],
       ),
     );

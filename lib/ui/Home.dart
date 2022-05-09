@@ -13,13 +13,14 @@ import 'HomeWidgets/BottomMenu.dart';
 import 'HomeWidgets/HomePage.dart';
 import 'HomeWidgets/Notifications.dart';
 import 'ads/Ad1.dart';
+import 'package:floating_action_bubble/floating_action_bubble.dart';
 
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   final GlobalKey _homePageKey = GlobalKey();
   final GlobalKey _searchKey = GlobalKey();
   final GlobalKey _notificationsKey = GlobalKey();
@@ -42,10 +43,19 @@ class _HomeState extends State<Home> {
   int _currentIndex = 0;
 
   List l = ['Explore', 'Search', 'Notifications', 'Cart', 'Profile'];
+  Animation<double> _animation;
+  AnimationController _animationController;
 
   @override
   void initState() {
-    // TODO: implement initState
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 260),
+    );
+
+    final curvedAnimation =
+        CurvedAnimation(curve: Curves.easeInOut, parent: _animationController);
+    _animation = Tween<double>(begin: 0, end: 1).animate(curvedAnimation);
 
     super.initState();
 
@@ -107,6 +117,54 @@ class _HomeState extends State<Home> {
     ];
 
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+
+      //Init Floating Action Bubble
+      floatingActionButton: FloatingActionBubble(
+        // Menu items
+        items: <Bubble>[
+          // Floating action menu item
+          Bubble(
+            title: "הזמנה חדשה",
+            iconColor: Colors.white,
+            bubbleColor: Color(0xFFFFB000),
+            icon: Icons.settings,
+            titleStyle: TextStyle(fontSize: 16, color: Colors.white),
+            onPress: () {},
+          ),
+          // Floating action menu item
+          Bubble(
+            title: "הודעה",
+            iconColor: Colors.white,
+            bubbleColor: Color(0xFFFFB000),
+            icon: Icons.people,
+            titleStyle: TextStyle(fontSize: 16, color: Colors.white),
+            onPress: () {},
+          ),
+          //Floating action menu item
+          /*  Bubble(
+            title: "Home",
+            iconColor: Colors.white,
+            bubbleColor: Colors.blue,
+            icon: Icons.home,
+            titleStyle: TextStyle(fontSize: 16, color: Colors.white),
+            onPress: () {},
+          ), */
+        ],
+        animation: _animation,
+
+        // On pressed change animation state
+        onPress: () => _animationController.isCompleted
+            ? _animationController.reverse()
+            : _animationController.forward(),
+
+        iconColor: Color.fromARGB(255, 237, 162, 0),
+
+        // Flaoting Action button Icon
+        iconData: Icons.add_shopping_cart,
+        backGroundColor: Colors.white,
+      ),
+
       appBar: AppBar(
         elevation: (_currentIndex == 4) ? 0.0 : 4.0,
         actions: <Widget>[
