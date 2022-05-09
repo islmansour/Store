@@ -1,0 +1,70 @@
+name: store
+description: A new Flutter project.
+
+
+version: 1.0.3
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  outline_material_icons: ^0.1.1
+  flappy_search_bar: 1.4.1
+  url_launcher: 5.4.5
+  cupertino_icons: ^0.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+
+flutter:
+
+
+  uses-material-design: true
+  assets:
+    - images/logo.png
+    - images/back.png
+    - images/fb.png
+    - images/google.png
+    - images/twitter.png
+    - images/tick.png
+    - images/exclamation.png
+    - images/carpet.png
+    - images/chair.png
+    - images/dresser.png
+    - images/table.png
+    - images/sofa.png
+    - images/background.png
+    - images/dhl.jpg
+    - images/ems.jpg
+    - images/aramex.jpg
+    - images/paypal.jpg
+    - images/mastercard.jpg
+    - images/visa.jpg
+    - images/male.jpg
+    - images/female.jpg
+    - images/payment.png
+    - images/shipping.png
+    - images/furniture.png
+    - images/shoppingDone.jpg
+    - images/emptyCart.png
+
+  fonts:
+    - family: RobotoRegular
+      fonts:
+        - asset: fonts/RobotoRegular.ttf
+    - family: RobotoBold
+      fonts:
+        - asset: fonts/RobotoBold.ttf
+        - weight: 700
+    - family: RobotoMedium
+      fonts:
+        - asset: fonts/RobotoMedium.ttf
+        - weight: 500
+
+
